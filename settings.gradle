@@ -1,7 +1,9 @@
 pluginManagement {
 	repositories {
 		gradlePluginPortal()
-		maven { url 'https://repo.spring.io/plugins-release' }
+//		 repo.spring.io 需要账号认证，换成阿里云解决拉取依赖401问题
+		maven { url 'https://maven.aliyun.com/repository/public' }
+		maven { url 'https://repo.spring.io/plugins-release-local' }
 	}
 }
 
