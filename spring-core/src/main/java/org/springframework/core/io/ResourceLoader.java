@@ -38,6 +38,8 @@ import org.springframework.util.ResourceUtils;
  * @see org.springframework.core.io.support.ResourcePatternResolver
  * @see org.springframework.context.ApplicationContext
  * @see org.springframework.context.ResourceLoaderAware
+ *
+ * 统一资源定位器 主要应用于根据给定的资源文件地址，返回对应的 Resource。
  */
 public interface ResourceLoader {
 
@@ -63,6 +65,8 @@ public interface ResourceLoader {
 	 * @see #CLASSPATH_URL_PREFIX
 	 * @see Resource#exists()
 	 * @see Resource#getInputStream()
+	 *
+	 * 根据对应的资源位置来获取对应类型的资源
 	 */
 	Resource getResource(String location);
 
