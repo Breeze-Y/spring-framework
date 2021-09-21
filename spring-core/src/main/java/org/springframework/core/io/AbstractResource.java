@@ -16,6 +16,12 @@
 
 package org.springframework.core.io;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.core.NestedIOException;
+import org.springframework.lang.Nullable;
+import org.springframework.util.ResourceUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,13 +31,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import org.springframework.core.NestedIOException;
-import org.springframework.lang.Nullable;
-import org.springframework.util.ResourceUtils;
 
 /**
  * Convenience base class for {@link Resource} implementations,
@@ -44,6 +43,8 @@ import org.springframework.util.ResourceUtils;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 28.12.2003
+ *
+ * Resource 接口的默认抽象实现，实现了Resource中的大部分基础方法。
  */
 public abstract class AbstractResource implements Resource {
 
@@ -156,6 +157,8 @@ public abstract class AbstractResource implements Resource {
 	 * checking File length, or possibly simply returning -1 if the stream can
 	 * only be read once.
 	 * @see #getInputStream()
+	 *
+	 * 获取资源的长度（资源的字节长度）
 	 */
 	@Override
 	public long contentLength() throws IOException {
@@ -186,6 +189,8 @@ public abstract class AbstractResource implements Resource {
 	 * This implementation checks the timestamp of the underlying File,
 	 * if available.
 	 * @see #getFileForLastModifiedCheck()
+	 *
+	 * 返回资源最后的修改时间，当资源最后修改时间为0并且资源不存在，抛出FileNotFoundException
 	 */
 	@Override
 	public long lastModified() throws IOException {
